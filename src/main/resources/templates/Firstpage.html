@@ -1,0 +1,37 @@
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Book Select</title>
+    <script src="Firstpagescript.js"></script>
+</head>
+<body>
+<div>
+    <button onclick="search('GET')">
+        GET
+    </button>
+    <button onclick="updated('PUT')">
+        PUT
+    </button>
+    <button onclick="search('DELETE')">
+        DELETE
+    </button>
+    <button onclick="updated('POST')">
+        POST
+    </button>
+</div>
+<div id="test-div">
+    <div th:insert="~{fragments :: testFragment}">
+    </div>
+</div>
+
+<div>
+    <span>bookid</span>
+    <textarea  style="width:100px;height:50px;" id="bookid" name="bookid"></textarea>
+    <span>bookname</span>
+    <textarea  style="width:100px;height:50px;" id="bookname" name="bookname"></textarea>
+    <span>bookauthor</span>
+    <textarea  style="width:100px;height:50px;" id="bookwriter" name="bookwriter"></textarea>
+    <span>bookdate</span>
+    <textarea  style="width:100px;height:50px;" id="bookdate" name="bookdate"></textarea>
+</div>
+</body>
+</html>

@@ -31,4 +31,12 @@ public class Books {
     public void setBookdate(Date bookdate) {
         Bookdate = bookdate;
     }
+    @Override
+    public String toString() {
+        return
+                "BookID=" + Bookid +
+                ", Bookname='" + Bookname + '\'' +
+                ", Bookwriter='" + Bookwriter + '\'' +
+                ", Bookdate=" + Bookdate ;
+    }
 }
