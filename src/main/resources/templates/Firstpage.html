@@ -5,6 +5,11 @@
 </head>
 <body>
 <div>
+    <form method="post" action="/2">
+        <button type="submit">
+            FileUpdate
+        </button>
+    </form>
     <button onclick="search('GET')">
         GET
     </button>
@@ -18,6 +23,7 @@
         POST
     </button>
 </div>
+
 <div id="test-div">
     <div th:insert="~{fragments :: testFragment}">
     </div>
@@ -33,5 +39,6 @@
     <span>bookdate</span>
     <textarea  style="width:100px;height:50px;" id="bookdate" name="bookdate"></textarea>
 </div>
+<div style="width:200px;height:200px;background-color: aquamarine"></div>
 </body>
 </html>

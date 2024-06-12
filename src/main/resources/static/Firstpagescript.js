@@ -31,3 +31,15 @@
     console.error('Error:', error);
 });
 }
+    function loadNextPage(url) {
+        fetch(url)
+            .then(response => response.text())
+            .then(data => {
+                document.body.innerHTML = data;
+                // 自动跳转到 /2 页面
+                window.location.href = "/2";
+            })
+            .catch(error => {
+                console.error('Error loading second page:', error);
+            });
+    }

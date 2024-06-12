@@ -10,8 +10,7 @@ import java.sql.SQLException;
 public class BookRowMapper implements RowMapper <Books>{
 
     @Override
-    public  Books mapRow(ResultSet rs, int rowNum) throws SQLException {
-        Books books = new Books();
+    public  Books mapRow(ResultSet rs, int rowNum) throws SQLException {        Books books = new Books();
         books.setBookid(rs.getInt("BookID"));
         books.setBookname(rs.getString("Bookname"));
         books.setBookwriter(rs.getString("Bookwriter"));

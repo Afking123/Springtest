@@ -1,10 +1,17 @@
 package com.example.demo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import org.springframework.ui.Model;
-
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class MyController {
@@ -14,6 +21,10 @@ public class MyController {
     private BookServicegetBody bookServicegetBody;
     @Autowired
     private Bookdao bookdao;
+    @Autowired
+    private FileUploadDao fileUploadDao;
+    @Autowired
+    private FileUploadService fileUploadService;
 
     @GetMapping("/book/{bookid}")
     public String select(Model model,@PathVariable int bookid) {
@@ -55,18 +66,27 @@ public class MyController {
         model.addAttribute("test", test);
         return "fragments :: testFragment";
     }
-    @GetMapping("/1")
+    @GetMapping("/")
     public String page(Model model){
         Test test = new Test();
         test.setStr("default");
-        //System.out.println(test.getStr());
+        System.out.println(test.getStr());
         model.addAttribute("test", test);
         return "Firstpage";
     }
-    @GetMapping("/2")
+    @PostMapping("/2")
     public String page2(Model model){
-        model.addAttribute("ko", "Hello World!!!");
+        //System.out.println("yo");
         return "Secondpage";
     }
-
+    @PostMapping("/fileupload")
+    public String fileupload(@RequestParam("files") MultipartFile[] files ,RedirectAttributes redirectAttributes,Model model) {
+        StringBuilder message = new StringBuilder();
+        for (MultipartFile file : files) {
+            fileUploadService.in(file, redirectAttributes);
+            message.append(fileUploadDao.fileupload()).append("<br>");
+        }
+        model.addAttribute("message", message);
+        return "Secondpage";
+    }
 }
