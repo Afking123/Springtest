@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.FileUpdate;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;

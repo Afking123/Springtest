@@ -1,8 +1,7 @@
-package com.example.demo;
+package com.example.demo.Booksearch;
 
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
 @Component
 public class Bookswithoutid {
     private String Bookname;

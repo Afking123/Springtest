@@ -1,13 +1,16 @@
 package com.example.demo;
+import com.example.demo.Booksearch.BookService;
+import com.example.demo.Booksearch.BookServicegetBody;
+import com.example.demo.Booksearch.Bookdao;
+import com.example.demo.Booksearch.Bookswithoutid;
+import com.example.demo.FileUpdate.FileUploadDao;
+import com.example.demo.FileUpdate.FileUploadService;
+import com.example.demo.JDA.Customer;
+import com.example.demo.JDA.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,6 +28,8 @@ public class MyController {
     private FileUploadDao fileUploadDao;
     @Autowired
     private FileUploadService fileUploadService;
+    @Autowired
+    private CustomerRepository repository;
 
     @GetMapping("/book/{bookid}")
     public String select(Model model,@PathVariable int bookid) {
@@ -36,7 +41,7 @@ public class MyController {
         return "fragments :: testFragment";
     }
     @PutMapping ("/book/{bookid}")
-    public String update(@PathVariable int bookid, @RequestBody List<Bookswithoutid> updateinfo,Model model){
+    public String update(@PathVariable int bookid, @RequestBody List<Bookswithoutid> updateinfo, Model model){
         System.out.println("更新bookid"+bookid);
        bookServicegetBody.in(updateinfo);
        bookService.getbookid(bookid);
@@ -69,14 +74,14 @@ public class MyController {
     @GetMapping("/")
     public String page(Model model){
         Test test = new Test();
-        test.setStr("default");
+        test.setStr("Frontpage");
         System.out.println(test.getStr());
         model.addAttribute("test", test);
         return "Firstpage";
     }
-    @PostMapping("/2")
+    @GetMapping("/2")
     public String page2(Model model){
-        //System.out.println("yo");
+        System.out.println("yo");
         return "Secondpage";
     }
     @PostMapping("/fileupload")
@@ -89,4 +94,10 @@ public class MyController {
         model.addAttribute("message", message);
         return "Secondpage";
     }
+    @GetMapping("/JDA")
+    public String JDA(Model model) {
+       repository.save(new Customer("Jack", "Bauer"));
+        return "results";
+   }
+
 }

@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.Booksearch;
 
 import org.springframework.stereotype.Component;
 import org.springframework.jdbc.core.RowMapper;
